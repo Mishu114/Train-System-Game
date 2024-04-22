@@ -1,0 +1,334 @@
+# Blender 4.1.0 MTL File: 'None'
+# www.blender.org
+
+newmtl carpett_boot.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd bplas_maruti_800_by_revolz.PNG
+map_d bplas_maruti_800_by_revolz.PNG
+
+newmtl chass_partss.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd black_maruti_800_by_revolz.PNG
+map_d black_maruti_800_by_revolz.PNG
+
+newmtl dash_main.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd dash_maruti_800_by_revolz.PNG
+map_d dash_maruti_800_by_revolz.PNG
+
+newmtl dash_parts.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd plass_maruti_800_by_revolz.PNG
+map_d plass_maruti_800_by_revolz.PNG
+
+newmtl door_locks.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd alum_maruti_800_by_revolz.PNG
+map_d alum_maruti_800_by_revolz.PNG
+
+newmtl door_locks.003
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd grey_maruti_800_by_revolz.PNG
+map_d grey_maruti_800_by_revolz.PNG
+
+newmtl glass.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd glas_maruti_800_by_revolz.PNG
+map_d glas_maruti_800_by_revolz.PNG
+
+newmtl green.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd green_maruti_800_by_revolz.PNG
+map_d green_maruti_800_by_revolz.PNG
+
+newmtl grill_plastic.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd black_maruti_800_by_revolz.PNG
+map_d black_maruti_800_by_revolz.PNG
+
+newmtl int_floor.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd base_maruti_800_by_revolz.PNG
+map_d base_maruti_800_by_revolz.PNG
+
+newmtl int_floor_mats.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd plas_maruti_800_by_revolz.PNG
+map_d plas_maruti_800_by_revolz.PNG
+
+newmtl int_pillars.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd seats_maruti_800_by_revolz.PNG
+map_d seats_maruti_800_by_revolz.PNG
+
+newmtl int_pillars.003
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd st_maruti_800_by_revolz.PNG
+map_d st_maruti_800_by_revolz.PNG
+
+newmtl int_roof.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd roof_maruti_800_by_revolz.PNG
+map_d roof_maruti_800_by_revolz.PNG
+
+newmtl left_rear_light.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd vehiclelights128.PNG
+map_d vehiclelights128.PNG
+
+newmtl lights_plas2_001.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd ora_maruti_800_by_revolz.PNG
+map_d ora_maruti_800_by_revolz.PNG
+
+newmtl lights_plass.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd red_maruti_800_by_revolz.PNG
+map_d red_maruti_800_by_revolz.PNG
+
+newmtl lights_plass.003
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd rim_maruti_800_by_revolz.PNG
+map_d rim_maruti_800_by_revolz.PNG
+
+newmtl main_steer.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd steer_maruti_800_by_revolz.PNG
+map_d steer_maruti_800_by_revolz.PNG
+
+newmtl mirror_middle.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd mir_maruti_800_by_revolz.PNG
+map_d mir_maruti_800_by_revolz.PNG
+
+newmtl pedals.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd ac_maruti_800_by_revolz.PNG
+map_d ac_maruti_800_by_revolz.PNG
+
+newmtl petrol_cap_lock.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd alu_maruti_800_by_revolz.PNG
+map_d alu_maruti_800_by_revolz.PNG
+
+newmtl primary.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.178860 0.007079 0.006343
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd red_maruti_800_by_revolz.png
+map_d red_maruti_800_by_revolz.png
+
+newmtl right_front_light.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd vehiclelights128.PNG
+map_d vehiclelights128.PNG
+
+newmtl right_rear_light.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd vehiclelights128.PNG
+map_d vehiclelights128.PNG
+
+newmtl rim_rf.003
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd tyre_maruti_800_by_revolz.PNG
+map_d tyre_maruti_800_by_revolz.PNG
+
+newmtl rim_rf.004
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd rotor_maruti_800_by_revolz.PNG
+map_d rotor_maruti_800_by_revolz.PNG
+
+newmtl seat_belts.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd belt_maruti_800_by_revolz.PNG
+map_d belt_maruti_800_by_revolz.PNG
+
+newmtl seats_main2.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd dplas2_maruti_800_by_revolz.PNG
+map_d dplas2_maruti_800_by_revolz.PNG
+
+newmtl speedo_decals.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd white_maruti_800_by_revolz.PNG
+map_d white_maruti_800_by_revolz.PNG
+
+newmtl speedometer_disc.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd spgrey_maruti_800_by_revolz.PNG
+map_d spgrey_maruti_800_by_revolz.PNG
+
+newmtl steer__part.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd stprt_maruti_800_by_revolz.PNG
+map_d stprt_maruti_800_by_revolz.PNG
+
+newmtl under.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd under_maruti_800_by_revolz.PNG
+map_d under_maruti_800_by_revolz.PNG
