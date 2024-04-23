@@ -54,7 +54,7 @@ float scale_Z = 1.0;
 
 // camera
 float camera_z = 0.0f;
-Camera camera(glm::vec3(0.0f, 45.0f, 0.0f));
+Camera camera(glm::vec3(0.0f, 35.0f, -20.0f));
 //Camera camera(glm::vec3(0.0f, 1.2f, 40.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -88,27 +88,27 @@ DirectionLight directlight(
 
 // positions of the point lights
 glm::vec3 pointLightPositions[] = {
-    glm::vec3(3.0f,  45.0f,  0.0f),
-    glm::vec3(7.0f,  45.0f,  5.0f),
-    glm::vec3(5.0f,  45.0f,  10.0f),
-    glm::vec3(0.0f,  45.0f,  15.0f),
-    glm::vec3(3.0f,  45.0f,  20.0f),
-    glm::vec3(3.0f,  45.0f,  25.0f),
-    glm::vec3(6.0f,  45.0f,  30.0f),
-    glm::vec3(0.0f,  45.0f,  35.0f),
-    glm::vec3(-6.0f,  45.0f,  40.0f),
-    glm::vec3(-13.0f,  45.0f,  50.0f),
+    glm::vec3(0.0f,  5.0f,  20.0f),
+    glm::vec3(7.0f,  40.0f,  5.0f),
+    glm::vec3(5.0f,  40.0f,  10.0f),
+    glm::vec3(0.0f,  40.0f,  15.0f),
+    glm::vec3(3.0f,  40.0f,  20.0f),
+    glm::vec3(3.0f,  40.0f,  25.0f),
+    glm::vec3(6.0f,  40.0f,  30.0f),
+    glm::vec3(0.0f,  40.0f,  35.0f),
+    glm::vec3(-6.0f,  40.0f,  40.0f),
+    glm::vec3(-13.0f,  40.0f,  50.0f),
 
-    glm::vec3(-3.0f, 45.0f,  0.0f),
-    glm::vec3(2.0f,  45.0f,  5.0f),
-    glm::vec3(-1.0f, 45.0f,  10.0f),
-    glm::vec3(-7.0f, 45.0f,  15.0f),
-    glm::vec3(-3.0f, 45.0f,  20.0f),
-    glm::vec3(-3.0f, 45.0f,  25.0f),
-    glm::vec3(0.0f, 45.0f,  30.0f),
-    glm::vec3(-7.0f, 45.0f,  35.0f),
-    glm::vec3(-13.0f, 45.0f,  40.0f),
-    glm::vec3(-20.0f, 45.0f,  50.0f),
+    glm::vec3(0.0, 40.0, -25.0),
+    glm::vec3(0.0, 40.0, -25.0),
+    glm::vec3(-1.0f, 40.0f,  10.0f),
+    glm::vec3(-7.0f, 40.0f,  15.0f),
+    glm::vec3(-3.0f, 40.0f,  20.0f),
+    glm::vec3(-3.0f, 40.0f,  25.0f),
+    glm::vec3(0.0f, 40.0f,  30.0f),
+    glm::vec3(-7.0f, 40.0f,  35.0f),
+    glm::vec3(-13.0f, 40.0f,  40.0f),
+    glm::vec3(-20.0f, 40.0f,  50.0f),
 
 };
 PointLight pointlight1(
@@ -130,7 +130,7 @@ PointLight pointlight2(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     2       // light number
 );
 PointLight pointlight3(
@@ -141,7 +141,7 @@ PointLight pointlight3(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     3       // light number
 );
 PointLight pointlight4(
@@ -152,7 +152,7 @@ PointLight pointlight4(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     4       // light number
 );
 
@@ -164,7 +164,7 @@ PointLight pointlight5(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     5       // light number
 );
 PointLight pointlight6(
@@ -175,7 +175,7 @@ PointLight pointlight6(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     6       // light number
 );
 
@@ -187,7 +187,7 @@ PointLight pointlight7(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     7       // light number
 );
 
@@ -199,7 +199,7 @@ PointLight pointlight8(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     8      // light number
 );
 
@@ -211,7 +211,7 @@ PointLight pointlight9(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     9      // light number
 );
 PointLight pointlight10(
@@ -222,7 +222,7 @@ PointLight pointlight10(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     10      // light number
 );
 PointLight pointlight11(
@@ -233,7 +233,7 @@ PointLight pointlight11(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.005f, //k_q
     11      // light number
 );
 PointLight pointlight12(
@@ -244,7 +244,7 @@ PointLight pointlight12(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.005f, //k_q
     12      // light number
 );
 
@@ -256,7 +256,7 @@ PointLight pointlight13(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     13      // light number
 );
 PointLight pointlight14(
@@ -267,7 +267,7 @@ PointLight pointlight14(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     14      // light number
 );
 PointLight pointlight15(
@@ -278,7 +278,7 @@ PointLight pointlight15(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     15     // light number
 );
 PointLight pointlight16(
@@ -289,7 +289,7 @@ PointLight pointlight16(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     16      // light number
 );
 PointLight pointlight17(
@@ -300,7 +300,7 @@ PointLight pointlight17(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     17      // light number
 );
 PointLight pointlight18(
@@ -311,7 +311,7 @@ PointLight pointlight18(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     18     // light number
 );
 
@@ -323,7 +323,7 @@ PointLight pointlight19(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     19      // light number
 );
 
@@ -335,7 +335,7 @@ PointLight pointlight20(
     1.0f, 1.0f, 1.0f,        // specular
     1.0f,   //k_c
     0.09f,  //k_l
-    0.012f, //k_q
+    0.010f, //k_q
     20      // light number
 );
 
@@ -356,6 +356,8 @@ float lastFrame = 0.0f;
 float speed = 0.003;
 
 int level = 1;
+bool t1_ON = false, t2_ON = false, t3_ON = false, t4_ON = false;
+bool start = false;
 
 int main()
 {
@@ -383,7 +385,7 @@ int main()
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetKeyCallback(window, key_callback);
-    glfwSetCursorPosCallback(window, mouse_callback);
+    //glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
 
     // tell GLFW to capture our mouse
@@ -508,14 +510,32 @@ int main()
     string sandPath = "sand.jpg";
     string r1Path = "rail.png";
     string r2Path = "rail_turn.png";
+    string woodPath = "wood.jpg";
+    string stopRPath = "stop_r.png";
+    string stopGPath = "stop_g.png";
+    string stopBPath = "stop_b.png";
+    string stopYPath = "stop_y.png";
+    string goPath = "game_over.jpg";
 
     unsigned int sandMap = loadTexture(sandPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     unsigned int r1Map = loadTexture(r1Path.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     unsigned int r2Map = loadTexture(r2Path.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    unsigned int woodMap = loadTexture(woodPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    unsigned int stopRMap = loadTexture(stopRPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    unsigned int stopGMap = loadTexture(stopGPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    unsigned int stopBMap = loadTexture(stopBPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    unsigned int stopYMap = loadTexture(stopYPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    unsigned int goMap = loadTexture(goPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
 
     Cube sand = Cube(sandMap, sandMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
     Cube rail = Cube(r1Map, r1Map, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
     Cube rail_turn = Cube(r2Map, r2Map, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    Cube wood = Cube(woodMap, woodMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    Cube stopR = Cube(stopRMap, stopRMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    Cube stopG = Cube(stopGMap, stopGMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    Cube stopB = Cube(stopBMap, stopBMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    Cube stopY = Cube(stopYMap, stopYMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    Cube GO = Cube(goMap, goMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
 
     //collected coins
 
@@ -587,15 +607,6 @@ int main()
     Model train2("train2/scene.gltf");
     Model train3("train3/scene.gltf");
     Model train4("train4/scene.gltf");
-
-    /*
-    string diffuseMapPath = "grass.jpg";
-    string specularMapPath = "grass.jpg";
-    unsigned int diffMap = loadTexture(diffuseMapPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
-    unsigned int specMap = loadTexture(specularMapPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
-    Cube grass = Cube(diffMap, specMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
-    */
-
     //ourShader.use();
     //lightingShader.use();
 
@@ -606,9 +617,18 @@ int main()
     std::mt19937 gen(rd());  // Mersenne Twister engine
     std::uniform_real_distribution<float> dis(-2.0f,2.0f);
     float randomValue = dis(gen);
-    //cout << roadF(31.416f) << endl;
 
 
+    //-20.0, 0.5f, 20.0f
+    float t1_x = -20.0, t1_y = 0.5f, t1_z = 20.0f, t1_ang = 0.0f, t1_speed=0.05f, t1_stopTime=0.0f, t1_reached =false;
+    float t2_x = 20.0, t2_y = 0.5f, t2_z = 20.0f, t2_ang = 0.0f, t2_speed = 0.05f, t2_stopTime = 0.0f, t2_reached = false;
+    
+    bool crashed = false;
+    float time = 0.0f;
+    int level1_time = 15;
+    int life = 3;
+    Sphere health = Sphere();
+    health.diffuse = glm::vec3(1.0, 0.0, 0.0);
     //camera.Position = glm::vec3(0.0, 0.0, 50.0);
     while (!glfwWindowShouldClose(window))
     {
@@ -731,32 +751,62 @@ int main()
 
         */
 
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.5f, 20.0f)); 
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(-1.0f, 2.0f, 2.0f));	
+
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(t1_x, 0.5f, t1_z));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(-1.0f, 2.0f, 2.0f));
         rotateXMatrix = glm::rotate(identityMatrix, glm::radians(-90.0f), glm::vec3(1.0, 0.0, 0.0));
-        model = translateMatrix * rotateXMatrix * scaleMatrix;
+        rotateYMatrix = glm::rotate(identityMatrix, glm::radians(t1_ang), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = translateMatrix * rotateYMatrix * rotateXMatrix * scaleMatrix;
         modelShader.setMat4("model", model);
         train1.Draw(modelShader);
 
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.5f, 20.0f)); 
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(t2_x, 0.5f, t2_z));
         scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 2.0f, 2.0f));	
-        model = translateMatrix * rotateXMatrix * scaleMatrix;
+        rotateYMatrix = glm::rotate(identityMatrix, glm::radians(t2_ang), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = translateMatrix * rotateYMatrix * rotateXMatrix * scaleMatrix;
         modelShader.setMat4("model", model);
         train2.Draw(modelShader);
 
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.5f, 40.0f));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 2.0f, 2.0f));
-        rotateYMatrix = glm::rotate(identityMatrix, glm::radians(-90.0f), glm::vec3(0.0, 1.0, 0.0));
-        model = translateMatrix * rotateYMatrix * rotateXMatrix * scaleMatrix;
-        modelShader.setMat4("model", model);
-        train3.Draw(modelShader);
+        if (level >= 2)
+        {
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.5f, 40.0f));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 2.0f, 2.0f));
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(-90.0f), glm::vec3(0.0, 1.0, 0.0));
+            model = translateMatrix * rotateYMatrix * rotateXMatrix * scaleMatrix;
+            modelShader.setMat4("model", model);
+            train3.Draw(modelShader);
+        }
         
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.5f, 0.0f));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 2.0f, 2.0f));
-        rotateYMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-        model = translateMatrix * rotateYMatrix * rotateXMatrix * scaleMatrix;
-        modelShader.setMat4("model", model);
-        train4.Draw(modelShader);
+        if (level >= 3)
+        {
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.5f, 0.0f));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 2.0f, 2.0f));
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+            model = translateMatrix * rotateYMatrix * rotateXMatrix * scaleMatrix;
+            modelShader.setMat4("model", model);
+            train4.Draw(modelShader);
+        }
+        
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -836,14 +886,282 @@ int main()
         //-------------------Testing------------------//
 
 
+        float hx = 17.0;
+        for (int i = 0; i < life; i++)
+        {
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(hx, 10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0,1.0, 0.002f));
+            glm::mat4 modelForHealth = translateMatrix * scaleMatrix;
+            health.drawSphere(lightingShader, modelForHealth);
+            hx += 1.5;
+        }
 
-
-
-
+        if (life == 0)
+        {
+            if (level == 1)
+            {
+                rotateXMatrix = glm::rotate(identityMatrix, glm::radians(50.0f), glm::vec3(1.0, 0.0, 0.0));
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(-5.0, 27.0, -20.0));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(10.0f, 10.0, 0.5f));
+                glm::mat4 modelForGO = translateMatrix * rotateXMatrix * scaleMatrix;
+                GO.drawCubeWithTexture(lightingShaderWithTexture, modelForGO);
+            }
+            else
+                level--;
+        }
 
         //-------------For Level 1---------------//
 
         if (level == 1)
+        {
+            //-------------rail Line------------//
+
+            //first train
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 19.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-19.0f, 0.3f, 0.2f));
+            glm::mat4 modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 20.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-19.0f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            float xx = 20.0f;
+            while (xx >= 1.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(xx, 0.0, 21.0));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.004, 0.125, 0.302);
+
+                xx -= 2.0f;
+            }
+
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(0.0, 1.0, 0.0));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0, 0.0, 21.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.004, 0.125, 0.302);
+
+
+
+            float zz = 22.0f;
+            while (zz <=40.0f)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0, 0.0, zz));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f, 0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.004, 0.125, 0.302);
+
+                zz += 2.0f;
+            }
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.5, 0.0, 20.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-0.5, 0.0, 20.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0, 0.0, 19.5));
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(35.0f), glm::vec3(0.0, 1.0, 0.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+
+
+            //second train
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 19.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(19.5f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 20.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(19.5f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            xx = -20.0f;
+            while (xx <= -1.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(xx, 0.0, 21.0));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+                xx += 2.0f;
+            }
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(0.0, 1.0, 0.0));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-1.0, 0.0, 19.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 2.0f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            zz = 18.0f;
+            while (zz >= 0.0f)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0, 0.0, zz));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f, 0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+                zz -= 2.0f;
+            }
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.5, 0.0, 19.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-0.5, 0.0, 19.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.9, 0.0, 19.4));
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(35.0f), glm::vec3(0.0, 1.0, 0.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(2.0, 0.0, 22.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 3.0f, 0.2f));
+            glm::mat4 modelForStop = translateMatrix * scaleMatrix;
+            wood.drawCubeWithTexture(lightingShaderWithTexture, modelForStop);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0, 3.0, 22.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 2.0f, 0.01f));
+            modelForStop = translateMatrix * scaleMatrix;
+            stopB.drawCubeWithTexture(lightingShaderWithTexture, modelForStop);
+
+
+
+            float dis = sqrt((t2_x - t1_x) * (t2_x - t1_x) + (t2_z - t1_z) * (t2_z - t1_z));
+            if (dis <= 3.0)
+            {
+                t1_ON = false;
+                t2_ON = false;
+
+                t1_x = -20.0,  t1_z = 20.0f, t1_ang = 0.0f;
+                t2_x = 20.0,  t2_z = 20.0f, t2_ang = 0.0f;
+                if(life>0)
+                    life--;
+                level1_time = 15;
+            }
+
+
+
+            if (t1_ON)
+            {
+                if (t1_x <= 0.0f)
+                {
+                    t1_x += t1_speed;
+                }
+                else
+                {
+                    if (t1_ang < 90.0)
+                        t1_ang += 2.0f;
+                    else
+                    {
+                        if (t1_z > 1.0)
+                            t1_z -= t1_speed;
+                        else t1_reached = true;
+                    }
+
+                }
+            }
+
+            if (t2_ON)
+            {
+                if (t2_x >= 0.0f)
+                {
+                    t2_stopTime = currentFrame;
+                    t2_x -= t2_speed;
+
+                }
+                else
+                {
+                    if (currentFrame - t2_stopTime > 3.0)
+                    {
+                        if (t2_ang < 90.0)
+                            t2_ang += 2.0f;
+                        else
+                        {
+                            if (t2_z < 39.0)
+                                t2_z += t2_speed;
+                            else
+                                t2_reached = true;
+                        }
+                    }
+                    
+
+                }
+            }
+
+            if (t1_reached && t2_reached)
+            {
+                life = 3;
+                level++;
+                t1_ON = false;
+                t2_ON = false;
+
+                t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
+                t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
+            }
+
+
+            if (start && currentFrame - time>=1.0)
+            {
+                time = currentFrame;
+                if(level1_time>0)
+                    level1_time--;
+            }
+
+            if (level1_time == 0)
+            {
+                t1_ON = false;
+                t2_ON = false;
+
+                t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
+                t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
+                if (life > 0)
+                    life--;
+                level1_time = 15;
+            }
+             
+            int A[2];
+            A[0] = 0;
+            A[1] = 0;
+            int ff = level1_time;
+            int inddd = 1;
+            while (ff > 0) {
+                A[inddd] = ff % 10;
+                ff /= 10;
+                inddd--;
+            }
+
+            rotateXMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(1.0, 0.0, 0.0));
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-17.0,10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            glm::mat4 modelForScore1 = translateMatrix * rotateXMatrix* scaleMatrix;
+            score_block[A[0]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore1);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-18.0, 10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            glm::mat4 modelForScore2 = translateMatrix * rotateXMatrix * scaleMatrix;
+            score_block[A[1]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore2);
+
+        }
+
+        //-------------For Level 2---------------//
+        if (level == 2)
         {
 
         }
@@ -889,7 +1207,7 @@ int main()
         for (unsigned int i = 0; i < 20; i++)
         {
             
-
+            if (i == 0) continue;
             model = glm::mat4(1.0f);
             model = glm::translate(model, pointLightPositions[i]);
             model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
@@ -1000,139 +1318,33 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(YAW_R, deltaTime);
     }
     
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
+
+        start = true;
+    }
 
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {   
-    if (key == GLFW_KEY_1 && action == GLFW_PRESS)
+    if (start && key == GLFW_KEY_1 && action == GLFW_PRESS)
     {
+        t1_ON = true;
+    }
+    else if (start && key == GLFW_KEY_2 && action == GLFW_PRESS)
+    {
+        t2_ON = true;
         
     }
-    else if (key == GLFW_KEY_2 && action == GLFW_PRESS)
+    else if (start && key == GLFW_KEY_3 && action == GLFW_PRESS)
     {
-        
+        t3_ON = true;
     }
-    else if (key == GLFW_KEY_3 && action == GLFW_PRESS)
+    else if (start && key == GLFW_KEY_4 && action == GLFW_PRESS)
     {
-       /* if (pointLightOn)
-        {
-            pointlight1.turnOff();
-            pointlight2.turnOff();
-            pointlight3.turnOff();
-            pointlight4.turnOff();
-            pointlight5.turnOff();
-            pointlight6.turnOff();
-            pointlight7.turnOff();
-            pointlight8.turnOff();
-            pointlight9.turnOff();
-            pointlight10.turnOff();
-            pointlight11.turnOff();
-            pointlight12.turnOff();
-            pointlight13.turnOff();
-            pointlight14.turnOff();
-            pointlight15.turnOff();
-            pointlight16.turnOff();
-            pointlight17.turnOff();
-            pointlight18.turnOff();
-            pointlight19.turnOff();
-            pointlight20.turnOff();
-            pointLightOn = !pointLightOn;
-        }
-        else
-        {
-            pointlight1.turnOn();
-            pointlight2.turnOn();
-            pointlight3.turnOn();
-            pointlight4.turnOn();
-            pointlight5.turnOn();
-            pointlight6.turnOn();
-            pointlight7.turnOn();
-            pointlight8.turnOn();
-            pointlight9.turnOn();
-            pointlight10.turnOn();
-            pointlight11.turnOn();
-            pointlight12.turnOn();
-            pointlight13.turnOn();
-            pointlight14.turnOn();
-            pointlight15.turnOn();
-            pointlight16.turnOn();
-            pointlight17.turnOn();
-            pointlight18.turnOn();
-            pointlight19.turnOn();
-            pointlight20.turnOn();
-            pointLightOn = !pointLightOn;
-        }*/
+        t4_ON = true;
     }
-    else if (key == GLFW_KEY_4 && action == GLFW_PRESS)
-    {
-        if (ambientToggle)
-        {
-            pointlight1.turnAmbientOff();
-            pointlight2.turnAmbientOff();
-            pointlight3.turnAmbientOff();
-            pointlight4.turnAmbientOff();
-            directlight.turnAmbientOff();
-            spotlight.turnAmbientOff();
-            ambientToggle = !ambientToggle;
-        }
-        else
-        {
-            pointlight1.turnAmbientOn();
-            pointlight2.turnAmbientOn();
-            pointlight3.turnAmbientOn();
-            pointlight4.turnAmbientOn();
-            directlight.turnAmbientOn();
-            spotlight.turnAmbientOn();
-            ambientToggle = !ambientToggle;
-        }
-    }
-    else if (key == GLFW_KEY_5 && action == GLFW_PRESS)
-    {
-        if (diffuseToggle)
-        {
-            pointlight1.turnDiffuseOff();
-            pointlight2.turnDiffuseOff();
-            pointlight3.turnDiffuseOff();
-            pointlight4.turnDiffuseOff();
-            directlight.turnDiffuseOff();
-            spotlight.turnDiffuseOff();
-            diffuseToggle = !diffuseToggle;
-        }
-        else
-        {
-            pointlight1.turnDiffuseOn();
-            pointlight2.turnDiffuseOn();
-            pointlight3.turnDiffuseOn();
-            pointlight4.turnDiffuseOn();
-            directlight.turnDiffuseOn();
-            spotlight.turnDiffuseOn();
-            diffuseToggle = !diffuseToggle;
-        }
-    }
-    else if (key == GLFW_KEY_6 && action == GLFW_PRESS)
-    {
-        if (specularToggle)
-        {
-            pointlight1.turnSpecularOff();
-            pointlight2.turnSpecularOff();
-            pointlight3.turnSpecularOff();
-            pointlight4.turnSpecularOff();
-            directlight.turnSpecularOff();
-            spotlight.turnSpecularOff();
-            specularToggle = !specularToggle;
-        }
-        else
-        {
-            pointlight1.turnSpecularOn();
-            pointlight2.turnSpecularOn();
-            pointlight3.turnSpecularOn();
-            pointlight4.turnSpecularOn();
-            directlight.turnSpecularOn();
-            spotlight.turnSpecularOn();
-            specularToggle = !specularToggle;
-        }
-    }
+    
 
 }
 
