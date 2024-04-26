@@ -355,9 +355,10 @@ float deltaTime = 0.0f;    // time between current frame and last frame
 float lastFrame = 0.0f;
 float speed = 0.003;
 
-int level = 1;
+int level = 3;
 bool t1_ON = false, t2_ON = false, t3_ON = false, t4_ON = false;
 bool start = false;
+bool GameFinished = false;
 
 int main()
 {
@@ -622,13 +623,21 @@ int main()
     //-20.0, 0.5f, 20.0f
     float t1_x = -20.0, t1_y = 0.5f, t1_z = 20.0f, t1_ang = 0.0f, t1_speed=0.05f, t1_stopTime=0.0f, t1_reached =false;
     float t2_x = 20.0, t2_y = 0.5f, t2_z = 20.0f, t2_ang = 0.0f, t2_speed = 0.05f, t2_stopTime = 0.0f, t2_reached = false;
+    float t3_x = 0.0, t3_y = 0.5f, t3_z = 40.0f, t3_ang = -180.0f, t3_speed = 0.05f, t3_stopTime = 0.0f, t3_reached = false;
+    float t4_x = 0.0, t4_y = 0.5f, t4_z = 0.0f, t4_ang = 0.0f, t4_speed = 0.05f, t4_stopTime = 0.0f, t4_reached = false;
+
     
     bool crashed = false;
     float time = 0.0f;
-    int level1_time = 15;
+    int level1_time = 12;
+    int level2_time = 15;
+    int level3_time = 16;
     int life = 3;
     Sphere health = Sphere();
     health.diffuse = glm::vec3(1.0, 0.0, 0.0);
+
+    bool down = true;
+    bool frot = true;
     //camera.Position = glm::vec3(0.0, 0.0, 50.0);
     while (!glfwWindowShouldClose(window))
     {
@@ -769,9 +778,9 @@ int main()
 
         if (level >= 2)
         {
-            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.5f, 40.0f));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(t3_x, 0.5f, t3_z));
             scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 2.0f, 2.0f));
-            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(-90.0f), glm::vec3(0.0, 1.0, 0.0));
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(t3_ang), glm::vec3(0.0, 1.0, 0.0));
             model = translateMatrix * rotateYMatrix * rotateXMatrix * scaleMatrix;
             modelShader.setMat4("model", model);
             train3.Draw(modelShader);
@@ -779,9 +788,9 @@ int main()
         
         if (level >= 3)
         {
-            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.5f, 0.0f));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(t4_x, 0.5f, t4_z));
             scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 2.0f, 2.0f));
-            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(t4_ang), glm::vec3(0.0, 1.0, 0.0));
             model = translateMatrix * rotateYMatrix * rotateXMatrix * scaleMatrix;
             modelShader.setMat4("model", model);
             train4.Draw(modelShader);
@@ -853,22 +862,22 @@ int main()
 
 
         translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 40.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(-40.0f, 0.5f, 0.5f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(-0.5f, 0.5f, 0.5f));
         glm::mat4 modelForTest = translateMatrix * scaleMatrix;
         drawCube(cubeVAO, lightingShader, modelForTest, 1.0,0.0,0.0);
 
         translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 40.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, -40.0f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, 0.5f));
         modelForTest = translateMatrix * scaleMatrix;
         drawCube(cubeVAO, lightingShader, modelForTest, 0.0, 1.0, 0.0);
 
         translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 0.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, 40.0f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, 0.5f));
         modelForTest = translateMatrix * scaleMatrix;
         drawCube(cubeVAO, lightingShader, modelForTest, 0.0, 0.0, 1.0);
 
         translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 0.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(40.0f, 0.5f, 0.5f));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, 0.5f));
         modelForTest = translateMatrix * scaleMatrix;
         drawCube(cubeVAO, lightingShader, modelForTest, 1.0, 0.0, 1.0);
 
@@ -907,7 +916,15 @@ int main()
                 GO.drawCubeWithTexture(lightingShaderWithTexture, modelForGO);
             }
             else
-                level--;
+            {
+                if (level == 2)
+                {
+                    level = 1;
+                    life = 3;
+                    level1_time = 12;
+                    t2_ang = 0.0;
+                }
+            }
         }
 
         //-------------For Level 1---------------//
@@ -1043,16 +1060,16 @@ int main()
 
 
             float dis = sqrt((t2_x - t1_x) * (t2_x - t1_x) + (t2_z - t1_z) * (t2_z - t1_z));
-            if (dis <= 3.0)
+            if (dis <= 3.5)
             {
                 t1_ON = false;
                 t2_ON = false;
-
+                start = false;
                 t1_x = -20.0,  t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0,  t2_z = 20.0f, t2_ang = 0.0f;
                 if(life>0)
                     life--;
-                level1_time = 15;
+                level1_time = 12;
             }
 
 
@@ -1108,11 +1125,14 @@ int main()
             {
                 life = 3;
                 level++;
+                t1_reached = false;
+                t2_reached = false;
+                start = false;
                 t1_ON = false;
                 t2_ON = false;
 
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
-                t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
+                t2_x = 20.0, t2_z = 20.0f, t2_ang = -90.0f;
             }
 
 
@@ -1127,12 +1147,12 @@ int main()
             {
                 t1_ON = false;
                 t2_ON = false;
-
+                start = false;
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
                 if (life > 0)
                     life--;
-                level1_time = 15;
+                level1_time = 12;
             }
              
             int A[2];
@@ -1163,7 +1183,691 @@ int main()
         //-------------For Level 2---------------//
         if (level == 2)
         {
+            //-------------------------For train 2-------------------------//
+            //-----||------//
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(19.5, 0.0, 20.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -20.0f));
+            glm::mat4 modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
 
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(20.5, 0.0, 20.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            float zz = 20.0f;
+            while (zz > 0.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(19.0, 0.0, zz));;
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 0.3f, 0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+                zz -= 2.0;
+            }
+
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(0.0, 1.0, 0.0));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(19.0, 0.0, 1.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            //--------- == --------//
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 0.5));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-40.0f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(20.5, 0.0, -0.5));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-40.0f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            float xx = 18.0f;
+            while (xx > -20.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(xx, 0.0, 1.0));;
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+                xx -= 2.0;
+            }
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-19.0, 0.0, 1.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            //----------||------------//
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-19.5, 0.0, 0.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 30.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.5, 0.0, 0.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 30.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            zz = 2.0f;
+            while (zz <= 30.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(-19.0, 0.0, zz));;
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f, 0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+                zz += 2.0;
+            }
+
+
+
+            //---------------------For train 1-----------------------//
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 19.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(29.5f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 20.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(30.0f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            xx = -20.0f;
+            while (xx <= 9.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(xx, 0.0, 21.0));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+                xx += 2.0f;
+            }
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(0.0, 1.0, 0.0));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(9.0, 0.0, 19.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 2.0f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            zz = 18.0f;
+            while (zz >= 0.0f)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(11.0, 0.0, zz));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f, 0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+                zz -= 2.0f;
+            }
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(10.5, 0.0, 19.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(9.5, 0.0, 19.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+
+            //--------------------For Train 3--------------------//
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.5, 0.0, 40.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -40.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-0.5, 0.0, 40.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -40.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+
+            zz = 40.0f;
+            while (zz >= 0.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0, 0.0, zz));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f, 0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+                zz -= 2.0f;
+            }
+
+
+
+
+            if (t1_ON)
+            {
+                if (t1_x <= 10.0)
+                    t1_x += t1_speed;
+                else
+                {
+                    if (t1_ang < 90.0)
+                        t1_ang += 2.0f;
+                    else
+                    {
+                        if (t1_z > 1.0)
+                            t1_z -= t1_speed;
+                        else t1_reached = true;
+                    }
+                }
+            }
+
+            if (!t3_reached && t3_ON)
+            {
+                if (t3_z > 1.0)
+                    t3_z -= t3_speed;
+                else
+                    t3_reached = true;
+            }
+
+            if (!t2_reached && t2_ON)
+            {
+                if (down && t2_z >= 0.0)
+                {
+                    t2_z -= t2_speed;
+                }
+                else
+                {
+                    down = false;
+                    if (frot && t2_ang < 0.0)
+                        t2_ang += 2.0f;
+                    else
+                    {
+                        frot = false;
+                        if (t2_x > -20.0)
+                            t2_x -= t1_speed;
+                        else
+                        {
+                            if (t2_ang < 90.0)
+                                t2_ang += 2.0f;
+                            else
+                            {
+                                if (t2_z <= 29.0)
+                                    t2_z += t2_speed;
+                                else
+                                    t2_reached = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            float dis12 = sqrt((t2_x - t1_x) * (t2_x - t1_x) + (t2_z - t1_z) * (t2_z - t1_z));
+            float dis13 = sqrt((t3_x - t1_x) * (t3_x - t1_x) + (t3_z - t1_z) * (t3_z - t1_z));
+            float dis23 = sqrt((t2_x - t3_x) * (t2_x - t3_x) + (t2_z - t3_z) * (t2_z - t3_z));
+
+            if (dis12 < 3.5 || dis23 < 3.5 || dis13 < 3.5)
+            {
+                t1_ON = false;
+                t2_ON = false;
+                t3_ON = false;
+                start = false;
+                t1_reached = false;
+                t2_reached = false;
+                t3_reached = false;
+
+                t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
+                t2_x = 20.0, t2_z = 20.0f, t2_ang = -90.0f;
+                t3_x = 0.0, t3_z = 40.0f;
+                down = true;
+                frot = true;
+                if (life > 0)
+                    life--;
+                level2_time = 15;
+            }
+
+            if (t1_reached && t2_reached && t3_reached)
+            {
+                life = 3;
+                level++;
+                t1_reached = false;
+                t2_reached = false;
+                t3_reached = false;
+                start = false;
+                t1_ON = false;
+                t2_ON = false;
+                t3_ON = false;
+
+                t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
+                t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
+                t3_x = 0.0, t3_z = 40.0f, t3_ang = -180.0f;
+            }
+
+
+            if (start && currentFrame - time >= 1.0)
+            {
+                time = currentFrame;
+                if (level2_time > 0)
+                    level2_time--;
+            }
+
+            if (level2_time == 0)
+            {
+                t1_ON = false;
+                t2_ON = false;
+                t3_ON = false;
+                down = true;
+                frot = true;
+                start = false;
+
+                t1_reached = false;
+                t2_reached = false;
+                t3_reached = false;
+
+                t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
+                t2_x = 20.0, t2_z = 20.0f, t2_ang = -90.0f;
+                t3_x = 0.0, t3_z = 40.0f, t3_ang = 0.0f;
+                if (life > 0)
+                    life--;
+                level2_time = 15;
+            }
+
+            int A[2];
+            A[0] = 0;
+            A[1] = 0;
+            int ff = level2_time;
+            int inddd = 1;
+            while (ff > 0) 
+            {
+                A[inddd] = ff % 10;
+                ff /= 10;
+                inddd--;
+            }
+
+            rotateXMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(1.0, 0.0, 0.0));
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-17.0, 10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            glm::mat4 modelForScore1 = translateMatrix * rotateXMatrix * scaleMatrix;
+            score_block[A[0]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore1);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-18.0, 10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            glm::mat4 modelForScore2 = translateMatrix * rotateXMatrix * scaleMatrix;
+            score_block[A[1]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore2);
+
+        }
+
+
+        //-----------------Level 3---------------//
+        if (level == 3)
+        {
+            //-------------------------For train 2-------------------------//
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 19.5));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-19.7f, 0.3f, 0.2f));
+            glm::mat4 modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 20.5));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-20.4f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            float xx = 20.0f;
+            while (xx > 0.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(xx, 0.0, 19.0));;
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 2.0f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+                xx -= 2.0;
+            }
+
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(-45.0f), glm::vec3(0.0, 1.0, 0.0));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0, 0.0, 19.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 2.0f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            //--------- || --------//
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.5, 0.0, 20.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-0.5, 0.0, 20.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+
+            float zz = 18.0f;
+            while (zz > 0.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0, 0.0, zz));;
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f,0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.020, 0.106, 0.188);
+                zz -= 2.0;
+            }
+
+           
+
+
+          
+
+            //---------------------For train 1-----------------------//
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 19.5));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(30.0, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 20.5));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(30.0f, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+            
+            xx = -19.0f;
+            while (xx <= 9.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(xx, 0.0, 21.0));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+                xx += 2.0f;
+            }
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(-45.0f), glm::vec3(0.0, 1.0, 0.0));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(9.0, 0.0, 21.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            
+            zz = 22.0f;
+            while (zz < 40.0f)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(11.0, 0.0, zz));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f, 0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+                zz += 2.0f;
+            }
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(10.5, 0.0, 19.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(9.5, 0.0, 19.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 20.0f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.0, 0.392, 0.196);
+
+            
+            //--------------------For Train 3--------------------//
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.0, 40.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(20.0, 0.3f, 0.2f));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.0, 39.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(20.0, 0.3f, 0.2));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+
+            xx = 0.0;
+            while (xx < 20.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(xx, 0.0, 39.0));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 2.0f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+                xx += 2.0f;
+            }
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(0.0, 1.0, 0.0));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(19.0, 0.0, 39.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, 2.0f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(20.5, 0.0, 40.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2, 0.3f, -30.5));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(19.5, 0.0, 39.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2, 0.3f, -29.5));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+
+            zz = 38.0;
+            while (zz >= 10.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(19, 0.0, zz));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 0.3f, 0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.545, 0.0, 0.0);
+                zz -= 2.0f;
+            }
+
+
+
+
+            //--------------------For Train 4--------------------//
+            
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.0, 0.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-9.0, 0.3f, 0.2));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.722, 0.525, 0.043);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.0, -0.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(-10.0, 0.3f, 0.2));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.722, 0.525, 0.043);
+
+            xx = 0.0;
+            while (xx > -10.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(xx, 0.0, 1.0));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.722, 0.525, 0.043);
+                xx -= 2.0f;
+            }
+            rotateYMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(0.0, 1.0, 0.0));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-9.0, 0.0, 1.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 0.3f, -2.0f));
+            modelForRail = translateMatrix * rotateYMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.722, 0.525, 0.043);
+
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-10.5, 0.0, -0.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2, 0.3f, 40.5));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.722, 0.525, 0.043);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-9.5, 0.0, 0.5));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2, 0.3f, 39.5));
+            modelForRail = translateMatrix * scaleMatrix;
+            drawCube(cubeVAO, lightingShader, modelForRail, 0.722, 0.525, 0.043);
+
+            zz = 2.0;
+            while (zz < 40.0)
+            {
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(-9.0, 0.0, zz));
+                scaleMatrix = glm::scale(identityMatrix, glm::vec3(-2.0f, 0.3f, 0.2f));
+                modelForRail = translateMatrix * scaleMatrix;
+                drawCube(cubeVAO, lightingShader, modelForRail, 0.722, 0.525, 0.043);
+                zz += 2.0f;
+            }
+            
+            //stop sign
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(8.0, 0.0, 22.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 3.0f, 0.2f));
+            glm::mat4 modelForStop = translateMatrix * scaleMatrix;
+            wood.drawCubeWithTexture(lightingShaderWithTexture, modelForStop);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(7.0, 3.0, 22.0));;
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 2.0f, 0.01f));
+            modelForStop = translateMatrix * scaleMatrix;
+            stopG.drawCubeWithTexture(lightingShaderWithTexture, modelForStop);
+
+
+            if (!t1_reached && t1_ON)
+            {
+                if (t1_x <= 10.0)
+                {
+                    t1_stopTime = currentFrame;
+                    t1_x += t1_speed;
+                }
+                else
+                {
+                    if (currentFrame - t1_stopTime > 3.0)
+                    {
+                        if (t1_ang > -90.0)
+                            t1_ang -= 2.0f;
+                        else
+                        {
+                            if (t1_z < 38.0)
+                                t1_z += t1_speed;
+                            else t1_reached = true;
+                        }
+                    }
+                }
+            }
+            
+            
+
+            if (!t3_reached && t3_ON)
+            {
+                if (t3_x < 20.0)
+                    t3_x += t3_speed;
+                else
+                {
+                    if (t3_ang < -90.0)
+                        t3_ang += 2.0f;
+                    else
+                    {
+                        if (t3_z > 10.0)
+                            t3_z -= t3_speed;
+                        else t3_reached = true;
+                    }
+                }
+            }
+
+
+            if (!t4_reached && t4_ON)
+            {
+                if (t4_x > -10.0)
+                    t4_x -= t4_speed;
+                else
+                {
+                    if (t4_ang < 90.0)
+                        t4_ang += 2.0f;
+                    else
+                    {
+                        if (t4_z < 38.0)
+                            t4_z += t4_speed;
+                        else t4_reached = true;
+                    }
+                }
+            }
+
+            if (!t2_reached && t2_ON)
+            {
+                if (t2_x > 0.0)
+                    t2_x -= t4_speed;
+                else
+                {
+                    if (t2_ang > -90.0)
+                        t2_ang -= 2.0f;
+                    else
+                    {
+                        if (t2_z > 1.0)
+                            t2_z -= t2_speed;
+                        else t2_reached = true;
+                    }
+                }
+            }
+           
+
+
+            float dis12 = sqrt((t2_x - t1_x) * (t2_x - t1_x) + (t2_z - t1_z) * (t2_z - t1_z));
+            float dis13 = sqrt((t3_x - t1_x) * (t3_x - t1_x) + (t3_z - t1_z) * (t3_z - t1_z));
+            float dis14 = sqrt((t4_x - t1_x) * (t4_x - t1_x) + (t4_z - t1_z) * (t4_z - t1_z));
+            float dis23 = sqrt((t2_x - t3_x) * (t2_x - t3_x) + (t2_z - t3_z) * (t2_z - t3_z));
+            float dis24 = sqrt((t2_x - t4_x) * (t2_x - t4_x) + (t2_z - t4_z) * (t2_z - t4_z));
+            float dis34 = sqrt((t4_x - t3_x) * (t4_x - t3_x) + (t4_z - t3_z) * (t4_z - t3_z));
+
+            if (dis12 < 3.5 || dis23 < 3.5 || dis13 < 3.5 || dis14<3.5|| dis24 < 3.5 || dis34 < 3.5)
+            {
+                t1_ON = false;
+                t2_ON = false;
+                t3_ON = false;
+                t4_ON = false;
+
+                start = false;
+                t1_reached = false;
+                t2_reached = false;
+                t3_reached = false;
+                t4_reached = false;
+
+                t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
+                t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
+                t3_x = 0.0, t3_z = 40.0f, t3_ang = -180.0f;
+                if (life > 0)
+                    life--;
+                level3_time = 16;
+            }
+
+            if (t1_reached && t2_reached && t3_reached && t4_reached)
+            {
+                GameFinished = true;
+            }
+
+
+            if (start && currentFrame - time >= 1.0)
+            {
+                time = currentFrame;
+                if (level3_time > 0)
+                    level3_time--;
+            }
+
+            if (level3_time == 0)
+            {
+                t1_ON = false;
+                t2_ON = false;
+                t3_ON = false;
+                t4_ON = false;
+                start = false;
+
+                t1_reached = false;
+                t2_reached = false;
+                t3_reached = false;
+                t4_reached = false;
+
+                t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
+                t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
+                t3_x = 0.0, t3_z = 40.0f, t3_ang = -180.0f;
+                t4_x = 0.0, t4_z = 0.0f, t4_ang = 0.0f;
+                if (life > 0)
+                    life--;
+                level3_time = 16;
+            }
+
+            int A[2];
+            A[0] = 0;
+            A[1] = 0;
+            int ff = level3_time;
+            int inddd = 1;
+            while (ff > 0)
+            {
+                A[inddd] = ff % 10;
+                ff /= 10;
+                inddd--;
+            }
+
+            rotateXMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(1.0, 0.0, 0.0));
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-17.0, 10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            glm::mat4 modelForScore1 = translateMatrix * rotateXMatrix * scaleMatrix;
+            score_block[A[0]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore1);
+
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-18.0, 10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            glm::mat4 modelForScore2 = translateMatrix * rotateXMatrix * scaleMatrix;
+            score_block[A[1]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore2);
         }
 
 
