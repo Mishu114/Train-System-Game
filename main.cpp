@@ -355,7 +355,7 @@ float deltaTime = 0.0f;    // time between current frame and last frame
 float lastFrame = 0.0f;
 float speed = 0.003;
 int life = 3;
-int level = 3;
+int level = 1;
 bool t1_ON = false, t2_ON = false, t3_ON = false, t4_ON = false;
 bool start = false;
 bool GameFinished = false;
