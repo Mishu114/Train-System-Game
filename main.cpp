@@ -54,7 +54,7 @@ float scale_Z = 1.0;
 
 // camera
 float camera_z = 0.0f;
-Camera camera(glm::vec3(0.0f, 35.0f, -20.0f));
+Camera camera(glm::vec3(0.0f, 30.0f, -15.0f));
 //Camera camera(glm::vec3(0.0f, 1.2f, 40.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -89,26 +89,26 @@ DirectionLight directlight(
 // positions of the point lights
 glm::vec3 pointLightPositions[] = {
     glm::vec3(0.0f,  5.0f,  20.0f),
-    glm::vec3(7.0f,  40.0f,  5.0f),
-    glm::vec3(5.0f,  40.0f,  10.0f),
-    glm::vec3(0.0f,  40.0f,  15.0f),
-    glm::vec3(3.0f,  40.0f,  20.0f),
-    glm::vec3(3.0f,  40.0f,  25.0f),
-    glm::vec3(6.0f,  40.0f,  30.0f),
-    glm::vec3(0.0f,  40.0f,  35.0f),
-    glm::vec3(-6.0f,  40.0f,  40.0f),
-    glm::vec3(-13.0f,  40.0f,  50.0f),
+    glm::vec3(7.0f,  30.0f,  5.0f),
+    glm::vec3(5.0f,  30.0f,  10.0f),
+    glm::vec3(0.0f,  30.0f,  15.0f),
+    glm::vec3(3.0f,  30.0f,  20.0f),
+    glm::vec3(3.0f,  30.0f,  25.0f),
+    glm::vec3(6.0f,  30.0f,  30.0f),
+    glm::vec3(0.0f,  30.0f,  35.0f),
+    glm::vec3(-6.0f,  30.0f,  40.0f),
+    glm::vec3(-13.0f,  30.0f,  50.0f),
 
-    glm::vec3(0.0, 40.0, -25.0),
-    glm::vec3(0.0, 40.0, -25.0),
-    glm::vec3(-1.0f, 40.0f,  10.0f),
-    glm::vec3(-7.0f, 40.0f,  15.0f),
-    glm::vec3(-3.0f, 40.0f,  20.0f),
-    glm::vec3(-3.0f, 40.0f,  25.0f),
-    glm::vec3(0.0f, 40.0f,  30.0f),
-    glm::vec3(-7.0f, 40.0f,  35.0f),
-    glm::vec3(-13.0f, 40.0f,  40.0f),
-    glm::vec3(-20.0f, 40.0f,  50.0f),
+    glm::vec3(12.0, 15.0, 15.0),
+    glm::vec3(12.0, 15.0, 15.0),
+    glm::vec3(-1.0f, 30.0f,  10.0f),
+    glm::vec3(-7.0f, 30.0f,  15.0f),
+    glm::vec3(-3.0f, 30.0f,  20.0f),
+    glm::vec3(-18.5, 15.0, 15.0),
+    glm::vec3(-18.5, 15.0, 15.0),
+    glm::vec3(-7.0f, 30.0f,  35.0f),
+    glm::vec3(-13.0f, 30.0f,  40.0f),
+    glm::vec3(-20.0f, 30.0f,  50.0f),
 
 };
 PointLight pointlight1(
@@ -355,10 +355,11 @@ float deltaTime = 0.0f;    // time between current frame and last frame
 float lastFrame = 0.0f;
 float speed = 0.003;
 
-int level = 3;
+int level = 1;
 bool t1_ON = false, t2_ON = false, t3_ON = false, t4_ON = false;
 bool start = false;
 bool GameFinished = false;
+bool gameOver = false;
 
 int main()
 {
@@ -508,7 +509,7 @@ int main()
 
     //-----------Load Texture---------//
     
-    string sandPath = "sand.jpg";
+    string sandPath = "field.jpg";
     string r1Path = "rail.png";
     string r2Path = "rail_turn.png";
     string woodPath = "wood.jpg";
@@ -517,6 +518,9 @@ int main()
     string stopBPath = "stop_b.png";
     string stopYPath = "stop_y.png";
     string goPath = "game_over.jpg";
+    string l1Path = "life1.png";
+    string l2Path = "life2.png";
+    string l3Path = "life3.png";
 
     unsigned int sandMap = loadTexture(sandPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     unsigned int r1Map = loadTexture(r1Path.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
@@ -527,6 +531,9 @@ int main()
     unsigned int stopBMap = loadTexture(stopBPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     unsigned int stopYMap = loadTexture(stopYPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
     unsigned int goMap = loadTexture(goPath.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    unsigned int l1Map = loadTexture(l1Path.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    unsigned int l2Map = loadTexture(l2Path.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+    unsigned int l3Map = loadTexture(l3Path.c_str(), GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
 
     Cube sand = Cube(sandMap, sandMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
     Cube rail = Cube(r1Map, r1Map, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
@@ -537,6 +544,9 @@ int main()
     Cube stopB = Cube(stopBMap, stopBMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
     Cube stopY = Cube(stopYMap, stopYMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
     Cube GO = Cube(goMap, goMap, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    Cube life1 = Cube(l1Map, l1Map, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    Cube life2 = Cube(l2Map, l2Map, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+    Cube life3 = Cube(l3Map, l3Map, 32.0f, 0.0f, 0.0f, 1.0f, 1.0f);
 
     //collected coins
 
@@ -608,6 +618,7 @@ int main()
     Model train2("train2/scene.gltf");
     Model train3("train3/scene.gltf");
     Model train4("train4/scene.gltf");
+    Model love("love/untitled.obj");
     //ourShader.use();
     //lightingShader.use();
 
@@ -623,7 +634,7 @@ int main()
     //-20.0, 0.5f, 20.0f
     float t1_x = -20.0, t1_y = 0.5f, t1_z = 20.0f, t1_ang = 0.0f, t1_speed=0.05f, t1_stopTime=0.0f, t1_reached =false;
     float t2_x = 20.0, t2_y = 0.5f, t2_z = 20.0f, t2_ang = 0.0f, t2_speed = 0.05f, t2_stopTime = 0.0f, t2_reached = false;
-    float t3_x = 0.0, t3_y = 0.5f, t3_z = 40.0f, t3_ang = -180.0f, t3_speed = 0.05f, t3_stopTime = 0.0f, t3_reached = false;
+    float t3_x = 0.0, t3_y = 0.5f, t3_z = 40.0f, t3_ang = -90.0f, t3_speed = 0.05f, t3_stopTime = 0.0f, t3_reached = false;
     float t4_x = 0.0, t4_y = 0.5f, t4_z = 0.0f, t4_ang = 0.0f, t4_speed = 0.05f, t4_stopTime = 0.0f, t4_reached = false;
 
     
@@ -802,21 +813,6 @@ int main()
 
 
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         lightingShaderWithTexture.use();
@@ -851,66 +847,47 @@ int main()
         pointlight20.setUpPointLight(lightingShaderWithTexture);
 
         //base
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(-40.0, 0.0, -5.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(80.0f, 0.1f, 50.0));
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(-40.0, 0.0, -20.0));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(80.0f, 0.1f, 80.0));
         glm::mat4 modelForBase = translateMatrix * scaleMatrix;
         sand.drawCubeWithTexture(lightingShaderWithTexture, modelForBase);
 
-
-
-        //-------------------Testing------------------//
-
-
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 40.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(-0.5f, 0.5f, 0.5f));
-        glm::mat4 modelForTest = translateMatrix * scaleMatrix;
-        drawCube(cubeVAO, lightingShader, modelForTest, 1.0,0.0,0.0);
-
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 40.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, 0.5f));
-        modelForTest = translateMatrix * scaleMatrix;
-        drawCube(cubeVAO, lightingShader, modelForTest, 0.0, 1.0, 0.0);
-
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 0.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, 0.5f));
-        modelForTest = translateMatrix * scaleMatrix;
-        drawCube(cubeVAO, lightingShader, modelForTest, 0.0, 0.0, 1.0);
-
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(-20.0, 0.0, 0.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, 0.5f));
-        modelForTest = translateMatrix * scaleMatrix;
-        drawCube(cubeVAO, lightingShader, modelForTest, 1.0, 0.0, 1.0);
-
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0, 0.0, 0.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, 0.5f));
-        modelForTest = translateMatrix * scaleMatrix;
-        drawCube(cubeVAO, lightingShader, modelForTest, 1.0, 0.0, 0.0);
-
-
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(20.0, 0.0, 20.0));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 0.5f, 0.1f));
-        modelForTest = translateMatrix * scaleMatrix;
-        drawCube(cubeVAO, lightingShader, modelForTest, 1.0, 0.0, 0.0);
-
-        //-------------------Testing------------------//
-
-
-        float hx = 17.0;
-        for (int i = 0; i < life; i++)
+        //life
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(12.0, 10.0, 20.0));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(6.0, 2.0, 0.01));
+        rotateXMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        glm::mat4 modelForLife = translateMatrix * rotateXMatrix * scaleMatrix;
+        if (life == 1)
         {
-            translateMatrix = glm::translate(identityMatrix, glm::vec3(hx, 10.0, 20.0));
-            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0,1.0, 0.002f));
-            glm::mat4 modelForHealth = translateMatrix * scaleMatrix;
-            health.drawSphere(lightingShader, modelForHealth);
-            hx += 1.5;
+            life1.drawCubeWithTexture(lightingShaderWithTexture, modelForLife);
         }
+
+        else if (life == 2)
+        {
+            life2.drawCubeWithTexture(lightingShaderWithTexture, modelForLife);
+        }
+
+        else if (life == 3)
+        {
+            life3.drawCubeWithTexture(lightingShaderWithTexture, modelForLife);
+        }
+
+         
+        //-------------------Testing------------------//
+
+
+        //-------------------Testing------------------//
+
+
+        
 
         if (life == 0)
         {
             if (level == 1)
             {
+                gameOver = true;
                 rotateXMatrix = glm::rotate(identityMatrix, glm::radians(50.0f), glm::vec3(1.0, 0.0, 0.0));
-                translateMatrix = glm::translate(identityMatrix, glm::vec3(-5.0, 27.0, -20.0));
+                translateMatrix = glm::translate(identityMatrix, glm::vec3(-5.0, 22.0, -15.0));
                 scaleMatrix = glm::scale(identityMatrix, glm::vec3(10.0f, 10.0, 0.5f));
                 glm::mat4 modelForGO = translateMatrix * rotateXMatrix * scaleMatrix;
                 GO.drawCubeWithTexture(lightingShaderWithTexture, modelForGO);
@@ -923,6 +900,15 @@ int main()
                     life = 3;
                     level1_time = 12;
                     t2_ang = 0.0;
+                }
+
+                if (level == 3)
+                {
+                    level = 2;
+                    life = 3;
+                    level2_time = 15;
+                    t2_ang = -90.0;
+                    t3_ang = -90.0;
                 }
             }
         }
@@ -1059,6 +1045,7 @@ int main()
 
 
 
+
             float dis = sqrt((t2_x - t1_x) * (t2_x - t1_x) + (t2_z - t1_z) * (t2_z - t1_z));
             if (dis <= 3.5)
             {
@@ -1104,7 +1091,7 @@ int main()
                 }
                 else
                 {
-                    if (currentFrame - t2_stopTime > 3.0)
+                    if (currentFrame - t2_stopTime > 2.0)
                     {
                         if (t2_ang < 90.0)
                             t2_ang += 2.0f;
@@ -1169,12 +1156,12 @@ int main()
             rotateXMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(1.0, 0.0, 0.0));
 
             translateMatrix = glm::translate(identityMatrix, glm::vec3(-17.0,10.0, 20.0));
-            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5f, 1.5, 0.002f));
             glm::mat4 modelForScore1 = translateMatrix * rotateXMatrix* scaleMatrix;
             score_block[A[0]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore1);
 
-            translateMatrix = glm::translate(identityMatrix, glm::vec3(-18.0, 10.0, 20.0));
-            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-18.5, 10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5f, 1.5, 0.002f));
             glm::mat4 modelForScore2 = translateMatrix * rotateXMatrix * scaleMatrix;
             score_block[A[1]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore2);
 
@@ -1407,7 +1394,7 @@ int main()
 
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = -90.0f;
-                t3_x = 0.0, t3_z = 40.0f;
+                t3_x = 0.0, t3_z = 40.0f, t3_ang = -90.0f;;
                 down = true;
                 frot = true;
                 if (life > 0)
@@ -1455,7 +1442,7 @@ int main()
 
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = -90.0f;
-                t3_x = 0.0, t3_z = 40.0f, t3_ang = 0.0f;
+                t3_x = 0.0, t3_z = 40.0f, t3_ang = -90.0f;
                 if (life > 0)
                     life--;
                 level2_time = 15;
@@ -1476,12 +1463,12 @@ int main()
             rotateXMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(1.0, 0.0, 0.0));
 
             translateMatrix = glm::translate(identityMatrix, glm::vec3(-17.0, 10.0, 20.0));
-            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5f, 1.5, 0.002f));
             glm::mat4 modelForScore1 = translateMatrix * rotateXMatrix * scaleMatrix;
             score_block[A[0]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore1);
 
-            translateMatrix = glm::translate(identityMatrix, glm::vec3(-18.0, 10.0, 20.0));
-            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-18.5, 10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5f, 1.5, 0.002f));
             glm::mat4 modelForScore2 = translateMatrix * rotateXMatrix * scaleMatrix;
             score_block[A[1]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore2);
 
@@ -1860,67 +1847,19 @@ int main()
             rotateXMatrix = glm::rotate(identityMatrix, glm::radians(45.0f), glm::vec3(1.0, 0.0, 0.0));
 
             translateMatrix = glm::translate(identityMatrix, glm::vec3(-17.0, 10.0, 20.0));
-            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5f, 1.5, 0.002f));
             glm::mat4 modelForScore1 = translateMatrix * rotateXMatrix * scaleMatrix;
             score_block[A[0]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore1);
 
-            translateMatrix = glm::translate(identityMatrix, glm::vec3(-18.0, 10.0, 20.0));
-            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.0f, 1.0, 0.002f));
+            translateMatrix = glm::translate(identityMatrix, glm::vec3(-18.5, 10.0, 20.0));
+            scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5f, 1.5, 0.002f));
             glm::mat4 modelForScore2 = translateMatrix * rotateXMatrix * scaleMatrix;
             score_block[A[1]].drawCubeWithTexture(lightingShaderWithTexture, modelForScore2);
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         
-
         
-        // also draw the lamp object(s)
-        ourShader.use();
-        ourShader.setMat4("projection", projection);
-        ourShader.setMat4("view", view);
-        float cr, cg, cb;
-        if (pointLightOn)
-        {
-            cr = 0.8f;
-            cg = 0.8f;
-            cb = 0.8f;
-        }
-        else
-        {
-            cr = 0.0f;
-            cg = 0.0f;
-            cb = 0.0f;
-        }
-        // point lights
-        glBindVertexArray(lightCubeVAO);
-        for (unsigned int i = 0; i < 20; i++)
-        {
-            
-            if (i == 0) continue;
-            model = glm::mat4(1.0f);
-            model = glm::translate(model, pointLightPositions[i]);
-            model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
-            ourShader.setMat4("model", model);
-            ourShader.setVec3("color", glm::vec3(cr, cg, cb));
-            glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-            //glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -1982,47 +1921,8 @@ void processInput(GLFWwindow* window)
 
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-        
-        camera.ProcessKeyboard(FORWARD, deltaTime);
-
-    }
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS ) {
-
-        camera.ProcessKeyboard(BACKWARD, deltaTime);
-        
-    }
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS ) 
-    {
-
-        camera.ProcessKeyboard(LEFT, deltaTime);
-        
-    }
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-
-        camera.ProcessKeyboard(RIGHT, deltaTime);
-    }
-
-    if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
-
-        camera.ProcessKeyboard(PITCH_U, deltaTime);
-    }
-    if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
-
-        camera.ProcessKeyboard(PITCH_D, deltaTime);
-    }
-
-    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
-
-        camera.ProcessKeyboard(YAW_L, deltaTime);
-    }
-    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
-
-        camera.ProcessKeyboard(YAW_R, deltaTime);
-    }
     
-    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
+    if (!gameOver && !GameFinished && glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
 
         start = true;
     }
@@ -2031,20 +1931,20 @@ void processInput(GLFWwindow* window)
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {   
-    if (start && key == GLFW_KEY_1 && action == GLFW_PRESS)
+    if (!gameOver && !GameFinished && start && key == GLFW_KEY_1 && action == GLFW_PRESS)
     {
         t1_ON = true;
     }
-    else if (start && key == GLFW_KEY_2 && action == GLFW_PRESS)
+    else if (!gameOver && !GameFinished && start && key == GLFW_KEY_2 && action == GLFW_PRESS)
     {
         t2_ON = true;
         
     }
-    else if (start && key == GLFW_KEY_3 && action == GLFW_PRESS)
+    else if (!gameOver && !GameFinished && start && key == GLFW_KEY_3 && action == GLFW_PRESS)
     {
         t3_ON = true;
     }
-    else if (start && key == GLFW_KEY_4 && action == GLFW_PRESS)
+    else if (!gameOver && !GameFinished && start && key == GLFW_KEY_4 && action == GLFW_PRESS)
     {
         t4_ON = true;
     }
