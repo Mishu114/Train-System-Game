@@ -361,6 +361,12 @@ bool start = false;
 bool GameFinished = false;
 bool gameOver = false;
 
+float t1_x = -20.0, t1_y = 0.5f, t1_z = 20.0f, t1_ang = 0.0f, t1_speed = 0.05f, t1_stopTime = 0.0f, t1_reached = false;
+float t2_x = 20.0, t2_y = 0.5f, t2_z = 20.0f, t2_ang = 0.0f, t2_speed = 0.05f, t2_stopTime = 0.0f, t2_reached = false;
+float t3_x = 0.0, t3_y = 0.5f, t3_z = 40.0f, t3_ang = -90.0f, t3_speed = 0.05f, t3_stopTime = 0.0f, t3_reached = false;
+float t4_x = 0.0, t4_y = 0.5f, t4_z = 0.0f, t4_ang = 0.0f, t4_speed = 0.05f, t4_stopTime = 0.0f, t4_reached = false;
+
+
 int main()
 {
     
@@ -652,11 +658,7 @@ int main()
 
 
     //-20.0, 0.5f, 20.0f
-    float t1_x = -20.0, t1_y = 0.5f, t1_z = 20.0f, t1_ang = 0.0f, t1_speed=0.05f, t1_stopTime=0.0f, t1_reached =false;
-    float t2_x = 20.0, t2_y = 0.5f, t2_z = 20.0f, t2_ang = 0.0f, t2_speed = 0.05f, t2_stopTime = 0.0f, t2_reached = false;
-    float t3_x = 0.0, t3_y = 0.5f, t3_z = 40.0f, t3_ang = -90.0f, t3_speed = 0.05f, t3_stopTime = 0.0f, t3_reached = false;
-    float t4_x = 0.0, t4_y = 0.5f, t4_z = 0.0f, t4_ang = 0.0f, t4_speed = 0.05f, t4_stopTime = 0.0f, t4_reached = false;
-
+    
     
     bool crashed = false;
     float time = 0.0f;
@@ -924,6 +926,8 @@ int main()
                     life = 3;
                     level1_time = 12;
                     t2_ang = 0.0;
+                    t1_speed = 0.05;
+                    t2_speed = 0.05;
                 }
 
                 if (level == 3)
@@ -935,6 +939,9 @@ int main()
                     t3_ang = -90.0;
                     down = true;
                     frot = true;
+                    t1_speed = 0.05;
+                    t2_speed = 0.05;
+                    t3_speed = 0.05;
                 }
             }
         }
@@ -1129,6 +1136,8 @@ int main()
                 start = false;
                 t1_x = -20.0,  t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0,  t2_z = 20.0f, t2_ang = 0.0f;
+                t1_speed = 0.05;
+                t2_speed = 0.05;
                 t1_reached = false;
                 t2_reached = false;
                 if(life>0)
@@ -1197,6 +1206,10 @@ int main()
 
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = -90.0f;
+
+                t1_speed = 0.05;
+                t2_speed = 0.05;
+                t3_speed = 0.05;
             }
 
 
@@ -1214,6 +1227,8 @@ int main()
                 start = false;
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
+                t1_speed = 0.05;
+                t2_speed = 0.05;
                 t1_reached = false;
                 t2_reached = false;
                 if (life > 0)
@@ -1449,7 +1464,7 @@ int main()
                     {
                         frot = false;
                         if (t2_x > -20.0)
-                            t2_x -= t1_speed;
+                            t2_x -= t2_speed;
                         else
                         {
                             if (t2_ang < 90.0)
@@ -1484,6 +1499,10 @@ int main()
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = -90.0f;
                 t3_x = 0.0, t3_z = 40.0f, t3_ang = -90.0f;;
+                t1_speed = 0.05;
+                t2_speed = 0.05;
+                t3_speed = 0.05;
+
                 down = true;
                 frot = true;
                 if (life > 0)
@@ -1507,6 +1526,11 @@ int main()
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
                 t3_x = 0.0, t3_z = 40.0f, t3_ang = -180.0f;
                 t4_x = 0.0, t4_z = 0.0f, t4_ang = 0.0f;
+
+                t1_speed = 0.05;
+                t2_speed = 0.05;
+                t3_speed = 0.05;
+                t4_speed = 0.05;
             }
 
 
@@ -1529,6 +1553,11 @@ int main()
                 t1_reached = false;
                 t2_reached = false;
                 t3_reached = false;
+
+                t1_speed = 0.05;
+                t2_speed = 0.05;
+                t3_speed = 0.05;
+
 
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = -90.0f;
@@ -1892,6 +1921,10 @@ int main()
                 t2_reached = false;
                 t3_reached = false;
                 t4_reached = false;
+                t1_speed = 0.05;
+                t2_speed = 0.05;
+                t3_speed = 0.05;
+                t4_speed = 0.05;
 
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
@@ -1924,6 +1957,11 @@ int main()
                     t3_x = 0.0, t3_z = 40.0f, t3_ang = -180.0f;
                     t4_x = 0.0, t4_z = 0.0f, t4_ang = 0.0f;
 
+                    t1_speed = 0.05;
+                    t2_speed = 0.05;
+                    t3_speed = 0.05;
+                    t4_speed = 0.05;
+
                     life = 3;
                     level3_time = l3_time;
                 }
@@ -1952,6 +1990,11 @@ int main()
                 t2_reached = false;
                 t3_reached = false;
                 t4_reached = false;
+
+                t1_speed = 0.05;
+                t2_speed = 0.05;
+                t3_speed = 0.05;
+                t4_speed = 0.05;
 
                 t1_x = -20.0, t1_z = 20.0f, t1_ang = 0.0f;
                 t2_x = 20.0, t2_z = 20.0f, t2_ang = 0.0f;
@@ -2057,6 +2100,42 @@ void processInput(GLFWwindow* window)
         start = true;
     }
 
+    if (!gameOver && !GameFinished && glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
+        if(t1_speed< 0.1)
+            t1_speed += 0.005;
+    }
+    if (!gameOver && !GameFinished && glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+
+        if (t2_speed < 0.1)
+            t2_speed += 0.005;
+    }
+    if (!gameOver && !GameFinished && glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+
+        if (t3_speed < 0.1)
+            t3_speed += 0.005;
+    }
+    if (!gameOver && !GameFinished && glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+
+        if (t4_speed < 0.1)
+            t4_speed += 0.005;
+    }
+
+    if (!gameOver && !GameFinished && glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        t1_speed = 0.0f;
+    }
+    if (!gameOver && !GameFinished && glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+
+        t2_speed = 0.0f;
+    }
+    if (!gameOver && !GameFinished && glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+
+        t3_speed = 0.0f;
+    }
+    if (!gameOver && !GameFinished && glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS) {
+
+        t4_speed = 0.0f;
+    }
+
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -2085,6 +2164,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         GameFinished = false;
         level = 1;
         life = 3;
+        start = false;
     }
     
 
